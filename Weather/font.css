@@ -37,6 +37,13 @@ src: url('fonts/HelveticaNeueCyr-UltraLight.woff') format('woff');
 	font-style: normal;
 }
 
+[class^="flaticon-raindrop"]:before, [class*="flaticon-raindrop"]:before,
+[class^="flaticon-raindrop"]:after, [class*="flaticon-raindrop"]:after {
+	font-family: Flaticon;
+	font-size: 1.1em;
+	font-style: normal;
+}
+
 .flaticon-cloudy:before { content: "\f100"; }
 .flaticon-fog:before { content: "\f101"; }
 .flaticon-clear-night:before { content: "\f102"; }

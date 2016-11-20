@@ -59,31 +59,63 @@ checkTime();
 
 
 function getWeather(data) {
-	var weather = data;
-	temperature = weather.currently.temperature;
-	if(temperature <= 0) {
-		temperature = (Math.floor(temperature))
-	} else {
-		temperature = (Math.ceil(temperature));
-	}
+	var weather = data,
+			tomorrow = weather.daily.data[1],
+			tomorrowTemp = Math.floor((tomorrow.temperatureMax + tomorrow.temperatureMin) / 2),
+			secondDay = weather.daily.data[2],
+			secondDayTemp = Math.floor((secondDay.temperatureMax + secondDay.temperatureMin) / 2),
+			thirdDay = weather.daily.data[3],
+			thirdDayTemp = Math.floor((thirdDay.temperatureMax + thirdDay.temperatureMin) / 2),
+			fourthDay = weather.daily.data[4],
+			fourthDayTemp = Math.floor((fourthDay.temperatureMax + fourthDay.temperatureMin) / 2),
+			wind = Math.floor(weather.currently.windSpeed),
+			tempFeels = weather.currently.apparentTemperature,
+			humidity = (weather.currently.humidity) * 100;
+	var temperature = weather.currently.temperature;
+			temperature = (Math.floor(temperature));
+	var weekWeather = weather.daily.summary,
+			todayTempMin = Math.floor(weather.daily.data[0].temperatureMin),
+			todayTempMax = Math.floor(weather.daily.data[0].temperatureMax);
 
-	var weatherIcon = weather.currently.icon;
-	console.log(weatherIcon);
-
-	var today = new Date(weather.currently.time * 1000)
-		.toLocaleString('en', 
-		 {weekday: 'long',
+	console.log(weekWeather);
+	var weatherIcon = weather.currently.icon,
+			today = new Date(weather.currently.time * 1000)
+			.toLocaleString('en', 
+			{weekday: 'long',
 			month: 'short',
 			day: 'numeric'});
+
+			console.log(wind);
 
 	$(document).ready(function(){
 		$(".temp").html(temperature + "<span>" + "&deg" + "</span>");
 		$(".weather-icon").addClass('flaticon-' + weatherIcon);
 		$(".location p").append("<span>" + today.toUpperCase() + "</span>");
+		$("p.day1").append(new Date(tomorrow.time * 1000).toLocaleString('en', {weekday: 'long'}));
+		$(".tab-1 span").addClass('flaticon-' + tomorrow.icon);
+		$(".tab-1-temp").append( tomorrowTemp + "&deg;");
+		$("p.day2").append(new Date(secondDay.time * 1000).toLocaleString('en', {weekday: 'long'}));
+		$(".tab-2 span").addClass('flaticon-' + secondDay.icon);
+		$(".tab-2-temp").append( secondDayTemp + "&deg;");
+		$("p.day3").append(new Date(thirdDay.time * 1000).toLocaleString('en', {weekday: 'long'}));
+		$(".tab-3 span").addClass('flaticon-' + thirdDay.icon);
+		$(".tab-3-temp").append( thirdDayTemp + "&deg;");
+		$("p.day4").append(new Date(fourthDay.time * 1000).toLocaleString('en', {weekday: 'long'}));
+		$(".tab-4 span").addClass('flaticon-' + fourthDay.icon);
+		$(".tab-4-temp").append( fourthDayTemp + "&deg;");
+		$(".weather-status p").append("<span>"+wind + "m/s"+"</span>").append("<span>"+ "Feels like: "+ Math.floor(tempFeels) + "&deg;" + "c" + "</span>").append("<span class='flaticon-raindrop'>"+" %" + Math.floor(humidity)+"</span>");
+		$(".additional-info p").append("H: " + todayTempMax + "&#x2103;" + " / " + "L: " + todayTempMin + "&#x2103;" + "<br>" + "<br>"+ weekWeather).css("display", "none");
 	});
 
+			$(".screen").on("click", function () {
+				$(".tabs p span").fadeToggle(200);
+				$(".tabs").slideToggle(300);
+				$(".additional-info p").toggle(300);
+			});
+
+
 	if(temperature <= 0) {
-		$(".temperature p").css("padding-right", "10%");
+		$(".temp").css("padding-right", "10%");
 	};
 
 

@@ -16,14 +16,14 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	height: 80%;
+	height: 100%;
 	font-family: 'HelveticaNeueCyr-Light', sans-serif;
-	background: radial-gradient(circle, rgba(255,255,255,.7) 0.1%, rgba(255,255,255,0.4) 60%),
+	background: radial-gradient(circle farthest-corner at 50% 40%,rgba(255,255,255,.7) 8%, rgba(255,255,255,0.4) 60%),
 	linear-gradient(to bottom, #C431C4, #8C59D9);
 	background-color: #DCA0D0;
-	position: relative;
+	position: absolute;
 	font-weight: 100;
-	overflow: hidden;
+	overflow-y: hidden;
 	color: #fff;
 }
 
@@ -36,7 +36,7 @@ html, body {
 	font-size: 2.5em;
 	font-family: 'HelveticaNeueCyr-Light', sans-serif;
 	letter-spacing: 0.12em;
-	margin-top: 2%;
+	margin-top: 10%;
 }
 
 .location p {
@@ -55,13 +55,25 @@ html, body {
 	font-size: 2em;
 }
 
-.temperature p {
+.weather-status p{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+	font-family: 'HelveticaNeueCyr-UltraLight', sans-serif;
+	font-size: 2.7em;
+	align-items: center;
+	margin-top: -5%;
+	padding: 0 10% 0;
+	letter-spacing: 0.1em;
+}
+
+.temp {
 	font-family: 'HelveticaNeueCyr-UltraLight', sans-serif;
 	font-size: 36em;
 	color: #fff;
 	text-align: center;
 	margin: 0;
-	padding-top: 10%;
 	position: relative;
 }
 
@@ -71,10 +83,6 @@ html, body {
 	position: absolute;
 }
 
-.CF {
-	font-size: 10em;
-	padding-top: 50px;
-}
 
 .status-bar {
 	text-align: center;
@@ -87,41 +95,73 @@ html, body {
 	display: flex;
 	width: 100vw;
 	height: 20vh;
-	margin: 0;
-	padding: 0;
+	position: absolute;
+	bottom: 0;
 	background-color: #DCA0D0;
 	font-family: 'HelveticaNeueCyr-UltraLight', sans-serif;
 }
 
-.tab1,
-.tab2,
-.tab3,
-.tab4 {
+.tab-1,
+.tab-2,
+.tab-3,
+.tab-4 {
 	width: 25vw;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	color: #fff;
-	font-size: 3em;
+	font-size: 2.5em;
 	margin: 0;
 	padding: 0;
 	text-align: center;
 	flex-direction: column;
 	justify-content: space-around;
+	letter-spacing: 0.1em;
 }
 
-.tab1 {
+
+.tab-1,
+.tab-2,
+.tab-3,
+.tab-4, {
+	padding: 3%;
+	box-sizing: border-box;
+}
+
+.tab-1-temp,
+.tab-2-temp,
+.tab-3-temp,
+.tab-4-temp    {
+	font-size: 1.3em;
+}
+
+.tab-1 {
 	background-color: #E1B1D8;
 	}
 
-.tab2 {
+.tab-2 {
 	background-color: #DCA0D0;
 }
 
-.tab3 {
+.tab-3 {
 	background-color: #D491C6;
 }
 
-.tab4 {
+.tab-4 {
 	background-color: #CC82C1;
 }
+
+.additional-info {
+	width: 100%;
+	height: 30vh;
+	font-family: 'HelveticaNeueCyr-Light', sans-serif;
+	font-size: 2.7em;
+	margin-top: 5%;
+	float: left;
+}
+
+.additional-info p {
+	padding: 3% 14% 0;
+}
+
+
+
